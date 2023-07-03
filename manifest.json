@@ -1,0 +1,39 @@
+{
+  "name": "Developer Runner",
+  "description": "Fully functional, useful bare minimum Google Chrome extension boilerplate [Manifest V3].",
+  "homepage_url": "https://github.com/llagerlof/fresh-chrome-extension",
+  "version": "2.0.0",
+  "manifest_version": 3,
+  "action": {
+    "default_title": "execute.js will run (watch the Chrome DevTools' console)",
+    "default_popup":"popup.html"
+  },
+  "content_scripts": [
+    {
+      "run_at" : "document_start",
+      "js": ["before.js"],
+      "matches": [
+        "https://www.youtube.com/*"
+      ]
+    },
+    {
+      "run_at" : "document_idle",
+      "js": ["after.js"],
+      "matches": [
+        "https://www.youtube.com/*"
+      ]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "tabs",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ]
+}
